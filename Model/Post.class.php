@@ -35,7 +35,7 @@ class Post
 	 * @var date
 	 * @access public
 	 */
-	protected  $date_creation;
+	protected  $creationDate;
 
 
 	protected  $state;
@@ -102,11 +102,11 @@ class Post
 
 	}
 
-	public function getDateCreation()
+	public function getCreationDate()
 
 	{
 
-		return $this->date_creation;
+		return $this->creationDate;
 
 	}
 
@@ -162,17 +162,17 @@ class Post
 
 	}
 
-	public function getDateCreation($dateCreation)
+	public function setCreationDate($creationDate)
 
 	{
 
-		if (is_date($date_creation))
+		
 
-   	 	{
+   	 	
 
-      		$this->date_creation = $date_creation;
+      		$this->creationDate = $creationDate;
 
-    	}
+    	
 
 	}
 
@@ -180,7 +180,7 @@ class Post
 
 	{
 
-		if (is_string($state))
+		if (is_bool($state))
 
    	 	{
 
