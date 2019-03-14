@@ -21,7 +21,7 @@ class Comment
 	 * @var int
 	 * @access protected
 	 */
-	protected  $post_id;
+	protected  $postId;
 
 	/**
 	 * 
@@ -42,7 +42,10 @@ class Comment
 	 * @var date
 	 * @access protected
 	 */
-	protected  $comment_date;
+	protected  $commentDate;
+
+
+	protected $state;
 
 
 	/**
@@ -92,7 +95,7 @@ class Comment
 
 	{
 
-		return $this->post_id;
+		return $this->postId;
 
 	}
 
@@ -116,7 +119,15 @@ class Comment
 
 	{
 
-		return $this->comment_date;
+		return $this->commentDate;
+
+	}
+
+	public function getState()
+
+	{
+
+		return $this->state;
 
 	}
 
@@ -140,13 +151,13 @@ class Comment
 
 	{
 
-		$id = (int) $post_id;
+		$id = (int) $postId;
 
-        if ($post_id > 0)
+        if ($postId > 0)
 
     	{
 
-     		$this->post_id = $post_id;
+     		$this->postId = $postId;
 
 		}
 
@@ -184,11 +195,23 @@ class Comment
 
 	{
 
-		if (is_date($comment_date))
+		
+
+      		$this->commentDate = $commentDate;
+
+    	
+
+	}
+
+	public function setState($state)
+
+	{
+
+		if (is_bool($state))
 
    	 	{
 
-      		$this->comment_date = $comment_date;
+      		$this->state = $state;
 
     	}
 

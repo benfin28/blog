@@ -60,6 +60,36 @@ class Admin
 	  }
 	}
 
+	public function connect ($connect)
+
+	{
+
+		if ($connect)
+
+		{
+
+			session_start();
+
+        	$_SESSION['id'] = $result['id'];
+
+       	 	$_SESSION['pseudo'] = $pseudo;
+
+        	header('Location: espace_membre.php');
+
+		}
+
+
+		else
+
+		{
+
+			echo 'Mauvais identifiant ou mot de passe !';
+    
+   		}
+
+
+	}
+
 	public function getId()
 
 	{
