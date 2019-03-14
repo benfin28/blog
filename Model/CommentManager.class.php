@@ -16,12 +16,17 @@ class CommentManager extends Manager
 	 * @access public
 	 */
 
+<<<<<<< HEAD
 	public function getListComments($postId, $state = PUBLISHED) 
+=======
+	public function getListComments($postId, $state) 
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
 	{
 
 		$listComments = [];
 
+<<<<<<< HEAD
 		$q = $this->db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS commentDate FROM comments WHERE post_id = :postId AND state = :state ORDER BY comment_date DESC');
 
 		$q->bindValue(':postId', $postId);
@@ -29,6 +34,11 @@ class CommentManager extends Manager
 		$q->bindValue(':state', $state);
 
 		$q->execute();
+=======
+		$q = $this->db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? AND state = ? ORDER BY comment_date DESC');
+
+		$q->execute(array($postId, $state));
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
         while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
 
@@ -72,6 +82,7 @@ class CommentManager extends Manager
 
 	{
 
+<<<<<<< HEAD
 		$modifyedComment = $this->db->prepare('UPDATE comments SET state = 0 WHERE id = :id');
 
 		
@@ -79,6 +90,16 @@ class CommentManager extends Manager
 		$modifyedComment->bindValue(':id', $comment->getId(), PDO::PARAM_INT);
 
 		return $modifyedComment->execute();
+=======
+		$modifyedComment = $this->db->prepare('UPDATE comments SET author = :author, comment = :comment, state = :state, comment_date = NOW() WHERE id = :id');
+
+		$modifyedComment->bindValue(':author', $comment->author(), PDO::PARAM_VARCHAR);
+		$modifyedComment->bindValue(':comment', $comment->comment(), PDO::PARAM_TEXT);
+		$modifyedComment->bindValue(':state', $comment->state(), PDO::PARAM_BOOL);
+		$modifyedComment->bindValue(':id', $comment->id(), PDO::PARAM_INT);
+
+		$modifyedComment->execute();
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
 	}
 
@@ -94,6 +115,7 @@ class CommentManager extends Manager
 
 		$newComment = $this->db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(:post_id, :author, :comment, NOW())');
 
+<<<<<<< HEAD
         $newComment->bindValue(':post_id', $comment->getPostId(), PDO::PARAM_INT);
         $newComment->bindValue(':author', $comment->getAuthor(), PDO::PARAM_STR);
 		$newComment->bindValue(':comment', $comment->getComment(), PDO::PARAM_STR);
@@ -145,6 +167,16 @@ class CommentManager extends Manager
 
 
 
+=======
+        $newComment->bindValue(':post_id', $comment->post_id(), PDO::PARAM_INT);
+        $newComment->bindValue(':author', $comment->author(), PDO::PARAM_VARCHAR);
+		$newComment->bindValue(':comment', $comment->comment(), PDO::PARAM_TEXT);
+		
+		$newComment->execute();
+
+	}
+
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 	
 	
 

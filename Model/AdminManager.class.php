@@ -28,11 +28,19 @@ class AdminManager extends Manager
 
       $connect = $this->db->prepare('SELECT id, pseudo, pass FROM admin WHERE pseudo = :pseudo AND pass = :pass');
 
+<<<<<<< HEAD
       $connect->bindValue(':pseudo', $admin->getPseudo(), PDO::PARAM_STR);
       $connect->bindValue(':pass', $admin->getPass(), PDO::PARAM_STR);
    
       return $connect->execute();
   
+=======
+      $connect->bindValue(':pseudo', $admin->pseudo(), PDO::PARAM_VARCHAR);
+      $connect->bindValue(':pass', $admin->pass(), PDO::PARAM_VARCHAR);
+    
+      $connect->execute();
+      
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
     }
 
 

@@ -16,12 +16,17 @@ class PostManager extends Manager
 	 * @access public
 	 */
 
+<<<<<<< HEAD
 	public function getListPosts($state = NULL) 
+=======
+	public function getListPosts($state = PUBLISHED) 
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
 	{
 
 		$listPosts = [];
 
+<<<<<<< HEAD
 			if ($state === NULL)
 
 			{
@@ -39,6 +44,11 @@ class PostManager extends Manager
 		$q->bindValue(':state', $state);*/
 
 		
+=======
+		$q = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, state FROM posts WHERE state = :state ORDER BY creation_date DESC');
+
+		$q->bindValue(':state', $state);
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
 		$q->execute();
 
@@ -64,11 +74,19 @@ class PostManager extends Manager
 
 	{
 
+<<<<<<< HEAD
 		$q = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate FROM posts WHERE id = ?');
 
         $q->execute(array($id));
 
         $post = $q->fetch(PDO::FETCH_ASSOC);
+=======
+		$post = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
+
+        $post->execute(array($id));
+
+        $post = $post->fetch(PDO::FETCH_ASSOC);
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
         $postObject = new Post($post);
 
@@ -87,6 +105,7 @@ class PostManager extends Manager
 
 		$updatedPost = $this->db->prepare('UPDATE posts SET title = :title, content = :content, state = :state, creation_date = NOW() WHERE id = :id');
 
+<<<<<<< HEAD
         $updatedPost->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
 		$updatedPost->bindValue(':content', $post->getContent(), PDO::PARAM_STR);
 		$updatedPost->bindValue(':state', $post->getState(), PDO::PARAM_INT);
@@ -94,6 +113,14 @@ class PostManager extends Manager
 		
 		return $updatedPost->execute();
 		
+=======
+        $updatedPost->bindValue(':title', $post->title(), PDO::PARAM_VARCHAR);
+		$updatedPost->bindValue(':content', $post->content(), PDO::PARAM_TEXT);
+		$updatedPost->bindValue(':state', $post->state(), PDO::PARAM_BOOL);
+		$updatedPost->bindValue(':id', $post->id(), PDO::PARAM_INT);
+
+		$updatedPost->execute();
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
 	}
 
@@ -108,6 +135,7 @@ class PostManager extends Manager
 
 		$addPost = $this->db->prepare('INSERT INTO posts(title, content, state, creation_date) VALUES(:title, :content, :state, NOW())');
 
+<<<<<<< HEAD
         $addPost->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
 		$addPost->bindValue(':content', $post->getContent(), PDO::PARAM_STR);
 		$addPost->bindValue(':state', $post->getState(), PDO::PARAM_INT);
@@ -115,6 +143,14 @@ class PostManager extends Manager
 		return $addPost->execute();
 		
 	
+=======
+        $addPost->bindValue(':title', $post->title(), PDO::PARAM_VARCHAR);
+		$addPost->bindValue(':content', $post->content(), PDO::PARAM_TEXT);
+		$addPost->bindValue(':state', $post->state(), PDO::PARAM_BOOL);
+		
+		$addPost->execute();
+
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 	}
 
 

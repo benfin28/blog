@@ -48,6 +48,9 @@ class Comment
 	protected $state;
 
 
+	protected $state;
+
+
 	/**
 	 * @access public
 	 * @param array $donnees 
@@ -131,6 +134,14 @@ class Comment
 
 	}
 
+	public function getState()
+
+	{
+
+		return $this->state;
+
+	}
+
 	public function setId($id)
 
 	{
@@ -200,6 +211,20 @@ class Comment
       		$this->commentDate = $commentDate;
 
     	
+
+	}
+
+	public function setState($state)
+
+	{
+
+		if (is_bool($state))
+
+   	 	{
+
+      		$this->state = $state;
+
+    	}
 
 	}
 

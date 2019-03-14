@@ -1,6 +1,7 @@
 <?php
 
 
+<<<<<<< HEAD
 const REPORTED = 2;
 
 const PUBLISHED = 1;
@@ -12,6 +13,17 @@ function loadClass($class)
 
 {
 
+=======
+const PUBLISHED = 1;
+
+const DRAFTED = 0;
+
+
+function loadClass($class)
+
+{
+
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
   require_once 'Model/'. $class . '.class.php'; 
 
 }
@@ -20,6 +32,7 @@ function loadClass($class)
 spl_autoload_register('loadClass');
 
 
+<<<<<<< HEAD
 function homeAdmin()
 
     {
@@ -48,6 +61,8 @@ function postAdmin()
     }
 
 
+=======
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
 function connect ($pseudo, $pass)
 
@@ -57,7 +72,11 @@ function connect ($pseudo, $pass)
 
     	$adminManager = new AdminManager();
 
+<<<<<<< HEAD
     	$connect = $adminManager->connect($admin);
+=======
+    	$connect = $postManager->connect($admin);
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
 		if ($connect === false)
 
@@ -74,18 +93,27 @@ function connect ($pseudo, $pass)
 
 			session_start();
 
+<<<<<<< HEAD
         	
        	 	$_SESSION['pseudo'] = $pseudo;
 
             $_SESSION['pass'] = $pass;
 
         	header('Location: admin.php');
+=======
+        	$_SESSION['id'] = $result['id'];
+
+       	 	$_SESSION['pseudo'] = $pseudo;
+
+        	header('Location: espace_membre.php');
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
     
    		}
 
 
 	}
 
+<<<<<<< HEAD
 
 function isConnected($pseudo, $pass)
 
@@ -162,11 +190,26 @@ print_r($comments);
 die();*/
 
     require_once('view/postView.php');
+=======
+function getListPosts()
+
+{
+
+    $postManager = new PostManager(); 
+
+    $posts = $postManager->getListPosts(); 
+
+    require('view/listPostsView.php');
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
 }
 
 
+<<<<<<< HEAD
 function _getPost($id)
+=======
+function getPost()
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
 {
 
@@ -175,6 +218,7 @@ function _getPost($id)
     $commentManager = new CommentManager();
 
 
+<<<<<<< HEAD
     $post = $postManager->getPost($id);
 
     $comments = $commentManager->getListComments($id);
@@ -184,6 +228,14 @@ die();*/
 
     return $post;
 
+=======
+    $post = $postManager->getPost($_GET['id']);
+
+    $comments = $commentManager->getListComments($_GET['id']);
+
+
+    require('view/postView.php');
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
 }
 
@@ -191,15 +243,26 @@ die();*/
 function addPostForm ()
 
 {
+<<<<<<< HEAD
    
     require_once('view\addPostView.php');
+=======
+    $postManager = new PostManager();
+
+    $addPost = $postManager->addPost();
+
+    require('view\addPostView.php');
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 }
 
 
 function addPost ($title, $content, $state)
 
 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
     $post = new Post(array('title'=>$title, 'content'=>$content, 'state'=>$state));
 
     $postManager = new PostManager();
@@ -219,7 +282,11 @@ function addPost ($title, $content, $state)
 
     {
 
+<<<<<<< HEAD
         header('Location: admin.php');
+=======
+        header('Location: index.php?action=id=' . $id);
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
     }
 
@@ -241,7 +308,10 @@ function modifyPostForm ($id)
 function modifyPost ($id, $title, $content, $state)
 
 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
     $post = new Post(array('id'=>$id, 'title'=>$title, 'content'=>$content, 'state'=>$state));
 
     $postManager = new PostManager();
@@ -261,7 +331,11 @@ function modifyPost ($id, $title, $content, $state)
 
     {
 
+<<<<<<< HEAD
         header('Location: admin.php');
+=======
+        header('Location: index.php?action=id=' . $id);
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
     }
 
@@ -269,11 +343,29 @@ function modifyPost ($id, $title, $content, $state)
 }
 
 
+<<<<<<< HEAD
+=======
+function addCommentForm ($postId)
+
+{
+    $commentManager = new CommentManager();
+
+    $addComment = $commentManager->addComment($postId);
+
+    require('view\addCommentView.php');
+}
+
+
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 function addComment($postId, $pseudo, $comment)
 
 {
 
+<<<<<<< HEAD
    $comment = new Comment(array('postId'=>$postId, 'author'=>$pseudo, 'comment'=>$comment));
+=======
+   $comment = new Comment(array('post_id'=>$postId, 'author'=>$pseudo, 'comment'=>$comment));
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
     $commentManager = new CommentManager();
 
@@ -299,10 +391,17 @@ function addComment($postId, $pseudo, $comment)
 }
 
 
+<<<<<<< HEAD
 function modifyComment ($id)
 
 {
     $comment = new Comment(array('id'=>$id));
+=======
+function modifyComment ($id, $author, $comment, $state, $postId)
+
+{
+    $comment = new Comment(array('id'=>$id, 'author'=>$author, 'comment'=>$comment, 'state'=>$state, 'post_id'=>$postId));
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
     $commentManager = new CommentManager();
 
@@ -321,12 +420,17 @@ function modifyComment ($id)
 
     {
 
+<<<<<<< HEAD
         header('Location: admin.php');
+=======
+        header('Location: index.php?action=post&id=' . $post_id);
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
     }
 
 
 }
+<<<<<<< HEAD
 
 
 function reportComment ($id)
@@ -372,3 +476,5 @@ function getReportedComments()
     require_once('view/reportedCommentsView.php');
 
 }
+=======
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51

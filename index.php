@@ -10,6 +10,7 @@ try
 
     {
 
+<<<<<<< HEAD
     	if ($_GET['action'] == 'connect')
 
         {
@@ -23,6 +24,12 @@ try
         {
 
             getListPosts(1);
+=======
+    	if ($_GET['action'] == 'listPosts')
+
+        {
+
+            getListPosts();
 
         }
 
@@ -35,8 +42,8 @@ try
 
             {
 
-                getPost($_GET['id']);
-                getListComments($_GET['id']);
+                getPost();
+                getListComments();
 
             }
 
@@ -47,9 +54,84 @@ try
                 throw new Exception('Aucun identifiant de billet envoyé');
 
             }
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
         }
 
+
+<<<<<<< HEAD
+        elseif ($_GET['action'] == 'post')
+=======
+        elseif ($_GET['action'] == 'addpost')
+
+        {
+
+            if (!empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['state']))
+
+            {
+
+                addPost($_POST['title'], $_POST['content'], $_POST['state']);
+
+            }
+
+            else
+
+            {   
+
+                throw new Exception('Tous les champs ne sont pas remplis !');
+
+            }
+
+        }
+
+
+        elseif ($_GET['action'] == 'addComment')
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
+
+        {
+
+            if (isset($_GET['id']) && $_GET['id'] > 0)
+
+            {
+
+<<<<<<< HEAD
+                getPost($_GET['id']);
+                getListComments($_GET['id']);
+
+            }
+
+            else 
+=======
+                if (!empty($_POST['pseudo']) && !empty($_POST['comment']))
+
+                {
+
+                    addComment($_GET['id'], $_POST['pseudo'], $_POST['comment']);
+
+                }
+
+                else
+
+                {   
+
+                    throw new Exception('Tous les champs ne sont pas remplis !');
+
+                }
+                
+            }
+
+            else
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
+
+            {
+
+                throw new Exception('Aucun identifiant de billet envoyé');
+
+            }
+
+        }
+
+<<<<<<< HEAD
         elseif ($_GET['action'] == 'addComment')
 
         {
@@ -62,6 +144,67 @@ try
         {
 
             reportComment($_GET['id']);
+=======
+        
+        elseif ($_GET['action'] == 'modifyPost')
+
+        {
+
+            if (isset($_GET['id']) && $_GET['id'] > 0)
+
+            {
+
+                modifyPost($_GET['id'], $_POST['title'], $_POST['content'], $_POST['state']);
+
+            }
+
+            
+
+            else
+
+            {
+
+                throw new Exception('Aucun identifiant de billet envoyé');
+
+            }
+
+        }
+
+
+        elseif ($_GET['action'] == 'modifyComment')
+
+        {
+
+            if (isset($_GET['id']) && $_GET['id'] > 0)
+
+            {
+
+                if (!empty($_POST['pseudo']) && !empty($_POST['comment']))
+
+                {
+
+                    modifyComment($_GET['id'], $_POST['pseudo'], $_POST['comment'], $_GET['post_id']);
+
+                }
+
+                else
+
+                {
+
+                    throw new Exception('Tous les champs ne sont pas remplis !');
+
+                }
+            }
+
+            else
+
+            {
+
+                throw new Exception('Aucun identifiant de billet envoyé');
+
+            }
+
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
         }
 
     }
@@ -70,7 +213,11 @@ try
 
     {
 
+<<<<<<< HEAD
         home();
+=======
+        getListPosts();
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
     }
 

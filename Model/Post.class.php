@@ -190,7 +190,11 @@ class Post
 
 	{
 
+<<<<<<< HEAD
 		if (is_int($state))
+=======
+		if (is_bool($state))
+>>>>>>> 698c3bd35c747fd17af16395b12910e82d89ae51
 
    	 	{
 
